@@ -27,14 +27,16 @@ const Form = () => {
   };
 
   return (
-    <div className="sm:p-24">
-      <div className="bg-cyan-100 sm:p-0 rounded-3xl">
+    <div className="sm:p-24 flex justify-center">
+      <div className="sm:w-1/2 bg-gray-400 sm:p-0 rounded-3xl">
         <h3 className="text-center text-2xl pt-6 font-medium">Add Student</h3>
-        <form onSubmit={handleSubmit} className="p-4 sm:p-12 bg-red-900">
+        <form onSubmit={handleSubmit} className="p-4 sm:p-12">
           <div className="row">
-            <div className="flex flex-col sm:flex-row sm:space-x-16 sm:pb-4">
-              <div className="form-group">
-                <label htmlFor="email">Email </label>
+            <div className="flex flex-col sm:pb-4 items-center p-8 sm:p-0">
+              <div className="form-group pb-4">
+                <label htmlFor="email" className="p-2">
+                  Email{" "}
+                </label>
                 <input
                   className="placeholder-shown:border-gray-500 ... p-4 rounded-lg font-medium"
                   type="email"
@@ -45,7 +47,9 @@ const Form = () => {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="tel">Password </label>
+                <label htmlFor="tel" className="p-2">
+                  Password{" "}
+                </label>
                 <input
                   className="placeholder-shown:border-gray-500 ... p-4 rounded-lg font-medium"
                   type="password"
@@ -58,9 +62,9 @@ const Form = () => {
             </div>
           </div>
 
-          <div className="pt-4 pb-8">
+          <div className="flex justify-center pt-4 pb-8">
             <Button
-              style="w-56 sm:w-96 bg-red-400 p-4 font-medium rounded-lg"
+              style="w-36 text-white bg-slate-700 hover:bg-gray-900 p-4 font-medium rounded-lg"
               type="submit"
               text="Submit"
             />
