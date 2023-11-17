@@ -1,10 +1,10 @@
 const Header = () => {
   let links = [
     { name: "Home", link: "/" },
-    { name: "About", link: "/" },
-    { name: "Contact", link: "/" },
-    { name: "Login", link: "/" },
-    { name: "Register", link: "/" },
+    { name: "About", link: "/about" },
+    { name: "Contact", link: "/contact" },
+    { name: "Login", link: "/login" },
+    { name: "Register", link: "/register" },
   ];
   return (
     <header className="p-4 shadow-lg">
