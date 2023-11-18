@@ -6,7 +6,7 @@ const Countries = ({ country }) => {
   //   const languages = Object.values(country.languages).join(", ");
 
   return (
-    <div className=" pb-4">
+    <div className=" pb-4 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 ...">
       <div className="country_flag">
         <img
           className="rounded-md shadow-md block "
