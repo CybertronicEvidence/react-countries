@@ -15,9 +15,9 @@ const Header = () => {
         <ul className="sm:flex sm:items-center">
           {links.map((link) => (
             <li key={link.name} className="sm:ml-8 text-lg">
-              <a href={link.link} className="hover:text-gray-400 duration-500">
+              {/* <a href={link.link} className="hover:text-gray-400 duration-500">
                 {link.name}
-              </a>
+              </a> */}
             </li>
           ))}
         </ul>
