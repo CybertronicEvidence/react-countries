@@ -12,10 +12,7 @@ const Header = () => {
   if (isLoggedIn) {
     links.push({ name: "Account", link: "/account" });
   } else {
-    links.push(
-      { name: "Login", link: "/login" },
-      { name: "Register", link: "/register" }
-    );
+    links.push({ name: "Get Started", link: "/auth" });
   }
   return (
     <header className="p-4 shadow-lg">
