@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "./Button";
+import axios from "axios";
 // import { MdOutlineRemoveRedEye } from "react-icons/md";
 // import { FaRegEyeSlash } from "react-icons/fa";
 
@@ -18,12 +19,14 @@ const LoginForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = {
       ...state,
     };
+
+    await axios.post();
 
     console.log(data);
   };
@@ -114,6 +117,9 @@ const SignupForm = () => {
     confirmPassword: "",
   });
 
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -123,13 +129,22 @@ const SignupForm = () => {
     });
   };
 
+  const handleTogglePassword = () => {
+    setShowPassword((prevState) => !prevState);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const data = {
-      ...state,
-    };
+    const { confirmPassword, ...data } = state;
 
+    if (data.password !== confirmPassword) {
+      setErrorMessage("Passwords do not match");
+      return;
+    }
+
+    // Passwords match, reset error message and proceed with form submission
+    setErrorMessage("");
     console.log(data);
   };
 
@@ -217,7 +232,7 @@ const SignupForm = () => {
                 <label htmlFor="password">Password </label>
                 <input
                   className="placeholder-shown:border-gray-500 ... p-4 rounded-lg font-medium"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   name="password"
                   value={state.password}
                   onChange={handleChange}
@@ -228,7 +243,7 @@ const SignupForm = () => {
                 <label htmlFor="confirmPassword">Confirm Password </label>
                 <input
                   className="placeholder-shown:border-gray-500 ... p-4 rounded-lg font-medium"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   name="confirmPassword"
                   value={state.confirmPassword}
                   onChange={handleChange}
@@ -236,6 +251,23 @@ const SignupForm = () => {
                 />
               </div>
             </div>
+          </div>
+          <div className="ml-8 sm:m-0 text-sm font-medium">
+            <label htmlFor="showPassword">
+              <input
+                id="showPassword"
+                type="checkbox"
+                checked={showPassword}
+                onChange={handleTogglePassword}
+                className="cursor-pointer appearance-none h-4 w-4 rounded-full border-2 border-gray-500 checked:bg-white checked:border-transparent focus:outline-none focus:ring-2 focus:ring-white"
+              />{" "}
+              Show Password
+            </label>
+          </div>
+          <div>
+            {errorMessage && (
+              <p className="text-red-500 font-medium">{errorMessage}</p>
+            )}
           </div>
 
           <div className="flex justify-center pt-4 pb-8">
