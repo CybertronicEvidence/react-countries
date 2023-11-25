@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { FaPen } from "react-icons/fa6";
+import { FaSave } from "react-icons/fa";
 import evidence from "../assets/86728008.png";
 
 const Profile = () => {
@@ -46,17 +48,17 @@ const Profile = () => {
   };
 
   return (
-    <div className="p-4 sm:p-16">
-      <div className="p-4 bg-white rounded-lg">
+    <div className="sm:p-16 bg-gray-300">
+      <div className="p-4">
         <div className="flex items-center">
           <div className="pb-8">
             <img
-              className="rounded-full sm:w-40 "
+              className="rounded-full w-36 sm:w-40 "
               src={evidence}
               alt="evidence"
             />
           </div>
-          <div className="pl-34 pl-20 ">
+          <div className="pl-4 sm:pl-20 ">
             <p className="uppercase font-semibold pb-2">
               {"Evidence"} {"Adejuwon"}
             </p>
@@ -65,96 +67,115 @@ const Profile = () => {
         </div>
         <div>
           {editMode ? (
-            <form className="flex flex-col space-y-4">
-              <div className="flex">
-                <div className="flex flex-col space-y-4">
-                  <label className="mb-1">
-                    First Name:
-                    <input
-                      type="text"
-                      name="firstName"
-                      value={userData.firstName}
-                      onChange={handleChange}
-                      className="border border-gray-300 rounded-md px-2 py-1"
-                    />
-                  </label>
-                  <label className="mb-1">
-                    Last Name:
-                    <input
-                      type="text"
-                      name="lastName"
-                      value={userData.lastName}
-                      onChange={handleChange}
-                      className="border border-gray-300 rounded-md px-2 py-1"
-                    />
-                  </label>
-                  <label className="mb-1">
-                    Short Name:
-                    <input
-                      type="text"
-                      name="short"
-                      value={userData.short}
-                      onChange={handleChange}
-                      className="border border-gray-300 rounded-md px-2 py-1"
-                    />
-                  </label>
-                </div>
-                <div className="flex flex-col space-y-4">
-                  <label className="mb-1">
-                    Email:
-                    <input
-                      type="email"
-                      name="email"
-                      value={userData.email}
-                      onChange={handleChange}
-                      className="border border-gray-300 rounded-md px-2 py-1"
-                    />
-                  </label>
-                  <label className="mb-1">
-                    Tel:
-                    <input
-                      type="tel"
-                      name="tel"
-                      value={userData.tel}
-                      onChange={handleChange}
-                      className="border border-gray-300 rounded-md px-2 py-1"
-                    />
-                  </label>
-                </div>
+            <div>
+              <div
+                className="flex justify-center cursor-pointer"
+                onClick={handleSave}
+              >
+                <FaSave />
+                <p className="pl-2">Save information</p>
               </div>
-              <button type="button" onClick={handleSave}>
-                Save
-              </button>
-            </form>
+              <form className="flex flex-col space-y-4">
+                <div className="sm:flex">
+                  <div className="flex flex-col sm:space-y-4 sm:pr-36">
+                    <label className="mb-1">
+                      First Name:
+                      <input
+                        type="text"
+                        name="firstName"
+                        value={userData.firstName}
+                        onChange={handleChange}
+                        className="border border-gray-300 rounded-md px-2 py-1"
+                      />
+                    </label>
+                    <label className="mb-1">
+                      Last Name:
+                      <input
+                        type="text"
+                        name="lastName"
+                        value={userData.lastName}
+                        onChange={handleChange}
+                        className="border border-gray-300 rounded-md px-2 py-1"
+                      />
+                    </label>
+                    <label className="mb-1">
+                      Short Name:
+                      <input
+                        type="text"
+                        name="short"
+                        value={userData.short}
+                        onChange={handleChange}
+                        className="border border-gray-300 rounded-md px-2 py-1"
+                      />
+                    </label>
+                  </div>
+                  <div className="flex flex-col ">
+                    <label className="mb-1">
+                      Email:
+                      <input
+                        type="email"
+                        name="email"
+                        value={userData.email}
+                        onChange={handleChange}
+                        className="border border-gray-300 rounded-md px-2 py-1"
+                      />
+                    </label>
+                    <label className="mb-1">
+                      Tel:
+                      <input
+                        type="tel"
+                        name="tel"
+                        value={userData.tel}
+                        onChange={handleChange}
+                        className="border border-gray-300 rounded-md px-2 py-1"
+                      />
+                    </label>
+                  </div>
+                </div>
+              </form>
+            </div>
           ) : (
-            <div className="flex flex-col space-y-4">
-              <div className="flex">
-                <div className="flex flex-col space-y-4">
-                  <p className="mb-1">
-                    First name:{" "}
-                    <span className="px-2 py-1">{userData.firstName}</span>
-                  </p>
-                  <p className="mb-1">
-                    Last name:{" "}
-                    <span className="px-2 py-1">{userData.lastName}</span>
-                  </p>
-                  <p className="mb-1">
-                    Short name:{" "}
-                    <span className="px-2 py-1">{userData.short}</span>
-                  </p>
-                </div>
-                <div className="flex flex-col space-y-4">
-                  <p className="mb-1">
-                    Email: <span className="px-2 py-1">{userData.email}</span>
-                  </p>
-                  <p className="mb-1">
-                    Tel: <span className="px-2 py-1">{userData.tel}</span>
-                  </p>
+            <div>
+              <div
+                className="flex justify-center cursor-pointer"
+                onClick={handleEdit}
+              >
+                <FaPen />
+                <p className="pl-2">Edit information</p>
+              </div>
+
+              <div className="flex flex-col space-y-4">
+                <div className="sm:flex">
+                  <div className="flex flex-col space-y-4 pr-36 ">
+                    <p className="mb-1">
+                      First name:{" "}
+                      <span className="sm:px-2 sm:py-1">
+                        {userData.firstName}
+                      </span>
+                    </p>
+                    <p className="mb-1">
+                      Last name:{" "}
+                      <span className="sm:px-2 sm:py-1">
+                        {userData.lastName}
+                      </span>
+                    </p>
+                    <p className="mb-1">
+                      Short name:{" "}
+                      <span className="sm:px-2 sm:py-1">{userData.short}</span>
+                    </p>
+                  </div>
+                  <div className="pt-4 sm:pt-0 flex flex-col space-y-4">
+                    <p className="mb-1">
+                      Email:{" "}
+                      <span className="sm:px-2 sm:py-1">{userData.email}</span>
+                    </p>
+                    <p className="mb-1">
+                      Tel:{" "}
+                      <span className="sm:px-2 sm:py-1">{userData.tel}</span>
+                    </p>
+                  </div>
                 </div>
               </div>
-              <button type="button" onClick={handleEdit}>
-                Edit
-              </button>
             </div>
           )}
         </div>
