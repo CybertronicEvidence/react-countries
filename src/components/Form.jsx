@@ -4,7 +4,13 @@ import axios from "axios";
 // import { MdOutlineRemoveRedEye } from "react-icons/md";
 // import { FaRegEyeSlash } from "react-icons/fa";
 
-const LoginForm = () => {
+const LoginForm = ({ activeTab, handleTabClick }) => {
+  // const [activeTab, setActiveTab] = useState("login"); // State to track active tab
+
+  // const handleTabClick = (tab) => {
+  //   setActiveTab(tab); // Function to toggle active tab
+  // };
+
   const [state, setState] = useState({
     email: "",
     password: "",
@@ -34,7 +40,30 @@ const LoginForm = () => {
   return (
     <div className="sm:p-24 flex justify-center">
       <div className="sm:w-1/2 bg-gray-400 sm:p-0 rounded-3xl">
-        <h3 className="text-center text-2xl pt-6 font-medium">Login</h3>
+        <h3 className="text-center text-2xl pt-6 font-medium">
+          <span
+            className={`cursor-pointer ${
+              activeTab === "login"
+                ? "rounded-lg border-b-4 border-slate-700 p-2 text-white "
+                : ""
+            }`}
+            onClick={() => handleTabClick("login")} // Toggle active tab on click
+          >
+            Login
+          </span>{" "}
+          <span className="text-slate-700 text-4xl font-medium ">|</span>{" "}
+          <span
+            className={`cursor-pointer ${
+              activeTab === "signup"
+                ? "rounded-lg border-b-4 border-slate-700 p-2 text-white "
+                : ""
+            }`}
+            onClick={() => handleTabClick("signup")} // Toggle active tab on click
+          >
+            Signup
+          </span>
+        </h3>
+
         <form onSubmit={handleSubmit} className="p-4 sm:p-12">
           <div className="row">
             <div className="flex flex-col sm:pb-4 items-center p-8 sm:p-0">
@@ -80,6 +109,8 @@ const LoginForm = () => {
   );
 };
 
+LoginForm.propTypes;
+
 const options = [
   {
     value: "",
@@ -105,7 +136,7 @@ const selectOptions = options.map(({ value, label }) => (
   </option>
 ));
 
-const SignupForm = () => {
+const SignupForm = ({ activeTab, handleTabClick }) => {
   const [state, setState] = useState({
     firstName: "",
     lastName: "",
@@ -151,7 +182,29 @@ const SignupForm = () => {
   return (
     <div className="sm:p-24 flex justify-center">
       <div className="sm:w-1/2 bg-gray-400 sm:p-0 rounded-3xl">
-        <h3 className="text-center text-2xl pt-6 font-medium">Sign up</h3>
+        <h3 className="text-center text-2xl pt-6 font-medium">
+          <span
+            className={`cursor-pointer ${
+              activeTab === "login"
+                ? "rounded-lg border-b-4 border-slate-700 p-2 text-white "
+                : ""
+            }`}
+            onClick={() => handleTabClick("login")} // Toggle active tab on click
+          >
+            Login
+          </span>{" "}
+          <span className="text-slate-700 text-4xl font-medium ">|</span>{" "}
+          <span
+            className={`cursor-pointer ${
+              activeTab === "signup"
+                ? "rounded-lg border-b-4 border-slate-700 p-2 text-white "
+                : ""
+            }`}
+            onClick={() => handleTabClick("signup")} // Toggle active tab on click
+          >
+            Signup
+          </span>
+        </h3>
         <form onSubmit={handleSubmit} className="p-4 sm:p-12">
           <div className="row">
             <div className="flex flex-col sm:flex-row sm:pb-4 pl-8 pb-4 sm:p-0">
@@ -283,4 +336,31 @@ const SignupForm = () => {
   );
 };
 
-export { LoginForm, SignupForm };
+SignupForm.propTypes;
+
+const Form = () => {
+  const [activeTab, setActiveTab] = useState("login");
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
+  return (
+    <div>
+      {activeTab === "login" ? (
+        <LoginForm
+          activeTab={activeTab}
+          handleTabClick={handleTabClick}
+          // ... pass other necessary props here
+        />
+      ) : (
+        <SignupForm
+          activeTab={activeTab}
+          handleTabClick={handleTabClick}
+          // ... pass other necessary props here
+        />
+      )}
+    </div>
+  );
+};
+
+export default Form;
